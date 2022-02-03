@@ -3,6 +3,8 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import Home from './pages/Home/Home.jsx';
 import Login from "./pages/Login/Login.jsx";
 import Layout from './components/Layout/Layout.jsx';
+import Signup from './pages/Signup/Signup.jsx';
+import News from './pages/News/News.jsx';
 
 function App() {
   return (
@@ -10,7 +12,9 @@ function App() {
           <Routes>
             <Route path='/' element={<Layout />}>
               <Route index element={<Home/>}/>
-              <Route path='/login' element={<Login />}/>
+              <Route exact path='/login' element={<Login />}/>
+              <Route exact path='/signup' element={<Signup />}/>
+              <Route exact path='/news' element={<News/>}/>
             </Route>
           </Routes>
     </Router>

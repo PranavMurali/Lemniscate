@@ -25,7 +25,7 @@ function Header(){
           </svg>
         </a>
 
-        <a className="flex items-center justify-center w-12 h-12 mt-2 hover:text-gray-200 hover:bg-gray-700 rounded" href="#">
+        <a className="flex items-center justify-center w-12 h-12 mt-2 hover:text-gray-200 hover:bg-gray-700 rounded" href="/news">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
         </svg>
@@ -82,7 +82,7 @@ function Header(){
          <span className="ml-2 text-sm font-medium">Insights</span>
        </a>
 
-       <a className="flex items-center w-full h-12 px-3 mt-2 hover:text-gray-200 hover:bg-gray-700 rounded" href="#">
+       <a className="flex items-center w-full h-12 px-3 mt-2 hover:text-gray-200 hover:bg-gray-700 rounded" href="/news">
        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
       </svg>
