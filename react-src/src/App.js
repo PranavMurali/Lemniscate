@@ -1,19 +1,18 @@
 import {React} from 'react';
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
-import Home from './components/Home/Home.jsx';
-import Header from './components/Header/Header.jsx';
-import Login from "./components/Login/Login.jsx";
+import Home from './pages/Home/Home.jsx';
+import Login from "./pages/Login/Login.jsx";
+import Layout from './components/Layout/Layout.jsx';
 
 function App() {
   return (
     <Router>
-      <div className="bg-black z-0">
-      <Header/> 
           <Routes>
-            <Route exact path='/' element={<Home />}/>
-            <Route exact path='/login' element={<Login />}/>
+            <Route path='/' element={<Layout />}>
+              <Route index element={<Home/>}/>
+              <Route path='/login' element={<Login />}/>
+            </Route>
           </Routes>
-        </div>
     </Router>
   );
 }
