@@ -6,7 +6,7 @@ function News() {
     const fetchData = async () => {
       const response = await fetch(`https://newsapi.org/v2/everything?q=Apple&from=2022-02-03&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWS_API}`);
       const Data = await response.json()
-      setData(Data.articles.slice(0,10))
+      setData(Data.articles.slice(0,15))
     }
     fetchData()
     }, [])
