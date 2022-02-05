@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login.jsx";
 import Layout from './components/Layout/Layout.jsx';
 import Signup from './pages/Signup/Signup.jsx';
 import News from './pages/News/News.jsx';
+import Insights from './pages/insights/Insights.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
               <Route exact path='/login' element={<Login />}/>
               <Route exact path='/signup' element={<Signup />}/>
               <Route exact path='/news' element={<News/>}/>
+              <Route exact path='/insights' element={<Insights/>}/>
             </Route>
           </Routes>
     </Router>
