@@ -6,6 +6,8 @@ import Layout from './components/Layout/Layout.jsx';
 import Signup from './pages/Signup/Signup.jsx';
 import News from './pages/News/News.jsx';
 import Insights from './pages/insights/Insights.jsx';
+import Settings from './pages/Settings/Settings.jsx';
+import Friends from './pages/friends/Friends.jsx';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
               <Route exact path='/signup' element={<Signup />}/>
               <Route exact path='/news' element={<News/>}/>
               <Route exact path='/insights' element={<Insights/>}/>
+              <Route exact path='/settings' element={<Settings/>}/>
+              <Route exact path='/friends' element={<Friends/>}/>
             </Route>
           </Routes>
     </Router>

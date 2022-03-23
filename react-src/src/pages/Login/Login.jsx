@@ -1,4 +1,5 @@
 import {React} from 'react'
+import { signInWithGoogle } from '../../firebase';
 
 function Login(){
     return (
@@ -17,6 +18,7 @@ function Login(){
                 <span className="mx-2 text-gray-300">/</span>
                 <a className="text-blue-400 hover:text-blue-500" href="/signup">Sign Up</a>
             </div>
+            <button className="button" onClick={signInWithGoogle}><i className="fab fa-google"></i>Sign in with google</button>
         </form>
         </div>
         </>
