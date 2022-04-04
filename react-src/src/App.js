@@ -1,4 +1,4 @@
-import {React} from 'react';
+import {React , useEffect} from 'react';
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import Home from './pages/Home/Home.jsx';
 import Login from "./pages/Login/Login.jsx";
@@ -8,8 +8,20 @@ import News from './pages/News/News.jsx';
 import Insights from './pages/insights/Insights.jsx';
 import Settings from './pages/Settings/Settings.jsx';
 import Friends from './pages/friends/Friends.jsx';
+import { authentication } from "../src/firebase-config";
 
 function App() {
+    authentication.onAuthStateChanged((authUser)=>{
+      if (authUser){
+        console.log(authUser);
+      }
+
+      else{
+        console.log("User is logged out");
+      }
+      
+    })
+  
   return (
     <Router>
           <Routes>

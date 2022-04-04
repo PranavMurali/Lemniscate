@@ -1,25 +1,34 @@
 import {React} from 'react'
-import { signInWithGoogle } from '../../firebase';
+import { authentication } from "../../firebase-config";
+import {signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {useNavigate} from "react-router-dom"; 
 
 function Login(){
+    const history =useNavigate();
+    const signInWithGoogle = (event) => {
+        event.preventDefault();
+        const provider = new GoogleAuthProvider();    
+        signInWithPopup(authentication, provider)
+        .then((result) => {
+            const user = result.user;
+            history('/');
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
     return (
         <>
         <div className="flex flex-col items-center justify-center w-screen h-screen bg-black text-gray-200">
-        <h1 className="text-2xl font-black dark:text-white">Welcome Back :)</h1>
-        <form className="p-4 max-w-sm rounded-lg border0 shadow-md sm:p-6 lg:p-8  bg-zinc-700 mt-12" action="">
-            <label className="font-semibold text-xs" for="usernameField">Email ID</label>
-            <input className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2 text-black" type="text"/>
-            <label className="font-semibold text-xs mt-3" for="passwordField">Password</label>
-            <input className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2 text-black"type="password"/>
-            <button className="flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Login</button>
-            
-            <div className="flex mt-6 justify-center text-xs">
-                <a className="text-blue-400 hover:text-blue-500" href="#">Forgot Password</a>
-                <span className="mx-2 text-gray-300">/</span>
-                <a className="text-blue-400 hover:text-blue-500" href="/signup">Sign Up</a>
-            </div>
-            <button className="button" onClick={signInWithGoogle}><i className="fab fa-google"></i>Sign in with google</button>
-        </form>
+        <h1 className="text-2xl font-black dark:text-white py-4">Welcome Back :)</h1>
+            <button >
+            </button>
+            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400" onClick={signInWithGoogle}>
+            <svg class="w-4 h-4 mr-2" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    Google Sign-in
+                </span>
+            </button>
         </div>
         </>
     )
