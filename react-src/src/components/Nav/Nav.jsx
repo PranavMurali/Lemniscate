@@ -1,10 +1,12 @@
 import React ,{useState} from 'react';
-
-function Header(){
+import { authentication } from '../../firebase-config';
+function Nav(){
+  const user = authentication.currentUser;
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
     {!isOpen ?  
+    <>
     <div className=" md:fixed flex flex-col items-center w-16 h-screen overflow-hidden text-gray-400 bg-black rounded">
     <a className="flex items-center justify-center mt-3" onClick={()=>setIsOpen(true)}>
       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,13 +55,23 @@ function Header(){
         </a>
 
         <a className="flex items-center justify-center w-16 h-16 bg-gray-800 hover:bg-gray-700 hover:text-gray-300" href="/login">
+        {user ?    
+        <img
+          class="object-cover w-12 h-12 rounded-full"
+          src={user.photoURL}
+          alt="Avatar"
+        />
+        :  
           <svg className="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-        </a>
+        }</a>
+       
 	  </div>
+    </>
 
   :
+  <>
    <div className="flex flex-col items-center w-40 h-screen overflow-hidden text-gray-400 bg-black rounded inset-y-0 left-0">
    <a className="flex items-center w-full px-3 mt-3" href="#" onClick={()=>setIsOpen(false)}>
    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -115,15 +127,24 @@ function Header(){
      <span className="ml-2 text-sm font-medium">Friends</span>
    </a>
    <a className="flex items-center justify-center w-full h-16 bg-gray-800 hover:bg-gray-700 hover:text-gray-300" href="/login">
-     <svg className="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-     </svg>
-     <span className="ml-2 text-sm font-medium">Account</span>
+   {user ?    
+        <img
+          class="object-cover w-12 h-12 rounded-full"
+          src={user.photoURL}
+          alt="Avatar"
+        />
+        :  
+          <svg className="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+   }
+   <span className="ml-2 text-sm font-medium">Account</span>
    </a>
  </div>
+ </>
  }
   </>
   );
 }
 
-export default Header;
+export default Nav;

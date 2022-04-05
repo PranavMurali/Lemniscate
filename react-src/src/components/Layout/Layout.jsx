@@ -1,11 +1,11 @@
 import {React} from 'react'
-import Header from '../Header/Header';
+import Nav from '../Nav/Nav';
 import { Outlet } from 'react-router-dom';
 
 function Layout(){
     return (
         <div className="bg-black flex flex-row">
-        <Header/>
+        <Nav/>
         <Outlet />
         </div>
     )
