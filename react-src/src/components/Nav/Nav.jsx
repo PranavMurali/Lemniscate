@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React ,{useEffect, useState} from 'react';
 import { authentication } from '../../firebase-config';
 function Nav(){
   const user = authentication.currentUser;
