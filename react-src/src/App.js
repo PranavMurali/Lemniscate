@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import Home from './pages/Home/Home.jsx';
 import Login from "./pages/Login/Login.jsx";
 import Layout from './components/Layout/Layout.jsx';
+import Post from './components/Post/Post.jsx';
 import Signup from './pages/Signup/Signup.jsx';
 import News from './pages/News/News.jsx';
 import Insights from './pages/insights/Insights.jsx';
@@ -33,6 +34,7 @@ function App() {
               <Route exact path='/insights' element={<Insights/>}/>
               <Route exact path='/settings' element={<Settings/>}/>
               <Route exact path='/friends' element={<Friends/>}/>
+              <Route exact path='/posts' element={<Post/>}/>
             </Route>
           </Routes>
     </Router>

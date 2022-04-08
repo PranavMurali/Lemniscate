@@ -1,22 +1,45 @@
 import React from 'react'
+import { Player } from 'video-react';
+import { storage } from '../../firebase-config';
+import { uploadBytes,ref, listAll} from 'firebase/storage';
 
 const Post = () => {
+  const listRef = ref(storage, 'gs://lemniscate-30462.appspot.com/');
+  const storageRef = ref(storage, 'UserNamehere');
+  const files= (file) => {
+    uploadBytes(storageRef, file).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+    });
+  }
+  const content = [];
+  listAll(listRef)
+  .then((res) => {
+    res.items.forEach((itemRef) => {
+      content.push(itemRef.name);
+    });
+  }).catch((error) => {
+    console.log(error);
+  })
+
   return (
-    <a class="relative block border border-gray-100 ml-40 mt-10" >
-    <button
-      class="absolute p-2 text-white bg-black rounded-full right-4 top-4"
-      type="button"
-    >
+    <>
+    {content.map((item, index) => {
+      return (
+        console.log("im palying")
+      )
+    })}
+    <a class="relative block border border-gray-100 ml-40 mt-10">
+    <button class="absolute p-2 text-white bg-black rounded-full right-4 top-4" type="button">
       <svg class="w-4 h-4" fill="none" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
       </svg>
     </button>
-  
     <Player
       playsInline
       fluid = {false}
-      width = {600}
-      height = {400}
+      width = {750}
+      height = {500}
+      preload = "metadata"
       poster="/assets/poster.png"
       src="https://firebasestorage.googleapis.com/v0/b/lemniscate-30462.appspot.com/o/jeff%20singh.mp4?alt=media&token=16522121-e56a-41d6-b68b-8815aaf32ea6"
     />
@@ -52,6 +75,9 @@ const Post = () => {
       </button>
     </div>
   </a>
+
+  <input type="file" onChange={(e) => files(e.target.files[0])}/>
+  </>
   )
 }
 
