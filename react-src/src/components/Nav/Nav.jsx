@@ -57,7 +57,7 @@ function Nav(){
         <a className="flex items-center justify-center w-16 h-16 bg-gray-800 hover:bg-gray-700 hover:text-gray-300" href="/login">
         {user ?    
         <img
-          class="object-cover w-12 h-12 rounded-full"
+          className="object-cover w-12 h-12 rounded-full"
           src={user.photoURL}
           alt="Avatar"
         />
@@ -129,7 +129,7 @@ function Nav(){
    <a className="flex items-center justify-center w-full h-16 bg-gray-800 hover:bg-gray-700 hover:text-gray-300" href="/login">
    {user ?    
         <img
-          class="object-cover w-12 h-12 rounded-full"
+          className="object-cover w-12 h-12 rounded-full"
           src={user.photoURL}
           alt="Avatar"
         />
