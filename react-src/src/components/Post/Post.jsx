@@ -23,6 +23,19 @@ const Post = () => {
   })
   return (
     <>
+    {content.map((item) => {
+      return (
+        <div className='bg-white text-white mt-20 ml-50'>
+          <Player
+            playsInline
+            fluid = {false}
+            width = {750}
+            height = {500}
+            src={`https://firebasestorage.googleapis.com/v0/b/lemniscate-30462.appspot.com/o/${item}?alt=media&token=16522121-e56a-41d6-b68b-8815aaf32ea6`}
+          />
+        </div>
+      )
+    })}
     <a className="relative block border border-gray-100 ml-40 mt-10">
     <button className="absolute p-2 text-white bg-black rounded-full right-4 top-4" type="button">
       <svg className="w-4 h-4" fill="none" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

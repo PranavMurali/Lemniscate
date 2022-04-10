@@ -1,7 +1,6 @@
 import {React} from 'react'
 import { authentication } from "../../firebase-config";
 
-
 function Home(){
   const user = authentication.currentUser;
   return (
