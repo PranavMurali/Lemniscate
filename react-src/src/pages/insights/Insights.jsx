@@ -7,7 +7,7 @@ function Insights() {
         const fetchData = async () => {
         const idResponse = await fetch(`https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${process.env.REACT_APP_STEAM_API}&vanityurl=Ohnucrinj`);
         const idData = await idResponse.json()
-        const userResponse = await fetch(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.REACT_APP_STEAM_API}&steamid=76561198826674647&format=json`);
+        const userResponse = await fetch(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.REACT_APP_STEAM_API}&include_appinfo=1&steamid=76561198826674647&format=json`);
         const userData = await userResponse.json()
         setSteamGames(userData.response.games);
         console.log(userData.response.games);
@@ -64,8 +64,12 @@ function Insights() {
      <div className="w-full max-w-xs text-center" key={game.appid}>
       <img className="object-cover object-center w-full h-48 mx-auto rounded-lg" src={gamedeets.background} alt="avatar" />
 
-      <div className="mt-2">
-          <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">{game.appid}</h3>
+      <div className="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">{game.name}</h3>
+          <div className="scale-150">
+            <img class="scale-150 hover:scale-125" src={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg`}></img>
+          </div>
+          {/* <span className="mt-1 font-medium text-gray-600 dark:text-gray-300">{game.name}</span><br></br> */}
           <span className="mt-1 font-medium text-gray-600 dark:text-gray-300">{game.playtime_forever}</span>
       </div>
     </div>
