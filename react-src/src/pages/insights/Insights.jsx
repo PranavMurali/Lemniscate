@@ -2,33 +2,19 @@ import React , {useState,useEffect} from 'react';
 
 function Insights() {
   const [SteamGames, setSteamGames] = useState([]);
-  const [gamedeets, setGameDeets] = useState([]);
     useEffect(() => {
-        const fetchData = async () => {
-        const idResponse = await fetch(`https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${process.env.REACT_APP_STEAM_API}&vanityurl=Ohnucrinj`);
-        const idData = await idResponse.json()
-        const userResponse = await fetch(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.REACT_APP_STEAM_API}&include_appinfo=1&steamid=76561198826674647&format=json`);
-        const userData = await userResponse.json()
-        setSteamGames(userData.response.games);
-        console.log(userData.response.games);
-    }
-    fetchData()
+      fetchData()
     }, [])
     var colors = [""];
-    
-    useEffect(() => {
-      const fetchGame = async (id) => {
-        const resp = await fetch(`https://store.steampowered.com/api/appdetails/?appids=${id}`);
-        const data = await resp.json()
-        setGameDeets(data[id].data);
-        console.log(data[id].data);
-      }  
-  fetchGame()
-  }, [])
-   
+    const fetchData = async () => {
+      const userResponse = await fetch(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=C64EB9B2D1B3564C81FCA9AB0C3B2709&include_appinfo=1&steamid=76561198866299738&format=json`);
+      const userData = await userResponse.json()
+      setSteamGames(userData.response.games);
+      console.log(userData.response.games);
+  }
   return (
     <>
-    <div className=" mx-20 grid gap-8 mt-8 grid-row-4">
+    <div className="mx-20 grid gap-8 mt-8 grid-row-4">
       <section className=" w-screen text-white bg-gray-900">
         <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
           <div className="max-w-xl">
@@ -59,15 +45,16 @@ function Insights() {
           </ul>
         </div>
       </section>
+      <div className="flex flex-wrap items-center mt-10">
     {SteamGames.map(game => (
     <>
      <div className="w-full max-w-xs text-center" key={game.appid}>
-      <img className="object-cover object-center w-full h-48 mx-auto rounded-lg" src={gamedeets.background} alt="avatar" />
 
       <div className="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">{game.name}</h3>
           <div className="scale-150">
-            <img class="scale-150 hover:scale-125" src={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg`}></img>
+            {/* <img class="scale-150 hover:scale-125" src={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg`}></img> */}
+            <img class="scale-50" src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg`} />
           </div>
           {/* <span className="mt-1 font-medium text-gray-600 dark:text-gray-300">{game.name}</span><br></br> */}
           <span className="mt-1 font-medium text-gray-600 dark:text-gray-300">{game.playtime_forever}</span>
@@ -75,6 +62,7 @@ function Insights() {
     </div>
    </>
    ))}
+   </div>
 </div>
 </>
 
