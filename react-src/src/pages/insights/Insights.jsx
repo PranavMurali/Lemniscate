@@ -1,7 +1,9 @@
 import React , {useState,useEffect} from 'react';
-
+import {useStateValue} from "../../StateProvider";
 function Insights() {
-  const Time=0;
+  let Times=[];
+  let Games=[];
+  const [{games},dispatch] =useStateValue();
   const [SteamGames, setSteamGames] = useState([]);
     useEffect(() => {
       fetchData()
@@ -13,6 +15,21 @@ function Insights() {
       setSteamGames(userData.response.games);
       console.log(userData.response.games);
   }
+
+  useEffect(()=>{
+    dispatch({
+      type:"SET_GAMES",
+      data:Games,
+    })
+  },[Games])
+
+  useEffect(()=>{
+    dispatch({
+      type:"SET_TIMES",
+      data:Times,
+    })
+  },[Times])
+
   return (
     <>
     <div className=" w-full grid gap-8 grid-row-4">
@@ -30,7 +47,7 @@ function Insights() {
 
           <ul className="grid grid-cols-1 gap-8 mt-8 sm:grid-cols-2 lg:grid-cols-3">
             <li className="p-8 shadow-xl rounded-xl">
-              <p className="text-3xl font-extrabold">{Time}</p>
+              <p className="text-3xl font-extrabold">{Times}</p>
               <p className="mt-1 text-xl font-medium">Hours played</p>
             </li>
 
@@ -57,6 +74,10 @@ function Insights() {
             <img class="scale-50" src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg`} />
           </div>
           <span className="mt-1 font-medium text-gray-600 dark:text-gray-300">{((game.playtime_forever)/60).toFixed(2)} hours</span>
+          {Times.push(((game.playtime_forever)/60).toFixed(2))}
+          {Games.push(game.name)}
+          {console.log(Games)}
+          {console.log(Times)}
       </div>
     </div>
    </>

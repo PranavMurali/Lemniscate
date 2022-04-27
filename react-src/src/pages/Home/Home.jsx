@@ -1,13 +1,12 @@
 import {React} from 'react'
-import { authentication } from "../../firebase-config";
-
+import {useStateValue} from '../../StateProvider'
 function Home(){
-  const user = authentication.currentUser;
+  const [{user}, dispatch] = useStateValue();
   return (
     <>
     {user ? 
     <>
-
+    
     </> : 
     <>
       <section className="px-4 py-24 mx-auto max-w-7xl">
