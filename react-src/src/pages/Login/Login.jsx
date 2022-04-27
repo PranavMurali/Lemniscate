@@ -32,25 +32,25 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      text: 'Average Play Time Apex Legends',
     },
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
 
 export const data = {
   labels,
   datasets: [
     {
-      label: 'Dataset 1',
-      data: [100,200,400,500,600,700,300],
+      label: 'Pranav Murali',
+      data: [30,32,28,40,45,23,25,30,34,56,43,50],
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
     {
-      label: 'Dataset 2',
-      data: [1000,200,600,700,111,240,300],
+      label: 'Average',
+      data: [90,122,89,60,99,113,116,97,98,104,101,170],
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
@@ -79,7 +79,9 @@ function Login(){
         <div>
             <h1 className='ml-20 text-white'>Welcome {user.displayName}</h1>
             <img className='ml-20' src={user.photoURL} alt=""/>
-            <Line options={options} data={data} />
+        </div>
+        <div className='w-full h-1/2'>
+        <Line options={options} data={data} />
         </div>
 </>
         
