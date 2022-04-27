@@ -1,10 +1,65 @@
-import {React} from 'react'
+import React  from 'react'
 import { authentication } from "../../firebase-config";
 import {signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import {useNavigate} from "react-router-dom"; 
+import {useNavigate} from "react-router-dom";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Chart.js Line Chart',
+    },
+  },
+};
+
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: [100,200,400,500,600,700,300],
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+    {
+      label: 'Dataset 2',
+      data: [1000,200,600,700,111,240,300],
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    },
+  ],
+};
 
 function Login(){
     const history =useNavigate();
+    const user = authentication.currentUser;
     const signInWithGoogle = (event) => {
         event.preventDefault();
         const provider = new GoogleAuthProvider();    
@@ -19,6 +74,17 @@ function Login(){
     }
     return (
         <>
+        {user ?   
+        <>
+        <div>
+            <h1 className='ml-20 text-white'>Welcome {user.displayName}</h1>
+            <img className='ml-20' src={user.photoURL} alt=""/>
+            <Line options={options} data={data} />
+        </div>
+</>
+        
+        :
+        
         <div className="flex flex-col items-center justify-center w-screen h-screen bg-black text-gray-200">
         <h1 className="text-2xl font-black dark:text-white py-4">Welcome Back :)</h1>
             <button >
@@ -30,6 +96,7 @@ function Login(){
                 </span>
             </button>
         </div>
+        }
         </>
     )
 }

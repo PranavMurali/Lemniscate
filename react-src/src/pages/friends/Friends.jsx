@@ -20,6 +20,7 @@ function Friends() {
         let imageData = await image.json();
         console.log(imageData.response.players[0].avatarfull);
         setSrc(imageData.response.players[0].avatarfull);
+        return imageData.response.players[0].avatarfull;
       }
 
 
