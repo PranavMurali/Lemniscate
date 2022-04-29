@@ -1,7 +1,8 @@
 export const initialState = {
     user: null,
     times: [],
-    games:[]
+    games:[],
+    gamenews:"Games",
 };
 
 const reducer = (state, action) => {

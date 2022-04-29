@@ -1,19 +1,26 @@
 import {React,useState,useEffect} from 'react';
-
+import {useStateValue} from "../../StateProvider";
 function News() {
   const [Data, setData] = useState([]);
+  const [{gamenews}, dispatch] = useStateValue();
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://newsapi.org/v2/everything?q=Games&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWS_API}`);
+      const response = await fetch(`https://newsapi.org/v2/everything?q=${gamenews}&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWS_API}`);
       const Data = await response.json()
-      setData(Data.articles.slice(0,10))
+      setData(Data.articles.slice(0,8))
     }
     fetchData()
     }, [])
     
   return (
     <>
-  <div className="ml-40 grid grid-cols-5 content-evenly self-center">
+        <span className="text-white ml-20 text-4xl font-extrabold">Based on games you've played <br/>
+        <span className='text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600'>Apex Legends</span><br/>
+        <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-500'>Valorant</span> <br/>
+        <span className='text-transparent bg-clip-text bg-gradient-to-r from-teal-200 to-lime-200'>God of War</span><br/>
+        </span>
+  <div className="-ml-40 mt-5 grid grid-cols-4 content-evenly self-center">
+
   {Data.map(article => (
     <>
     <div className=" max-w-xs h-max mx-2 overflow-hidden rounded-lg shadow-lg bg-gray-800 my-10">
